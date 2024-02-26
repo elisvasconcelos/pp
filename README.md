@@ -7,16 +7,15 @@
         - [Turn off project](#turn-off-project)
     - [Dependencies commands](#dependencies-commands)
         - [Install Composer dependencies](#install-composer-dependencies)
-        - [Install NPM dependencies](#install-npm-dependencies)
     - [Database Commands](#database-commands)
         - [Run Migrations](#run-migrations)
         - [Seed database](#seed-database)
-        - [Clean database](#clean-database)
+    - [Schedule Commands](#schedules-commands)
+        - [Up Schedule Commands](#up-schedule-commands)
     - [Test Commands](#test-commands)
         - [Run tests](#run-tests)
     - [Code Style Commands](#code-style-commands)
         - [Run Laravel Pint Code Style to **DETECT** code style problems](#run-laravel-pint-code-style-to-detect-code-style-problems)
-        - [Run Laravel Pint to **FIX** code style problems](#run-laravel-pint-to-fix-code-style-problems)
 
 
 # Installation
@@ -28,7 +27,8 @@ git clone https://github.com/elisvasconcelos/pp.git
 2. Use the command `docker-compose exec app composer install` to install dependencies.
 3. Use the command `docker-compose exec app php artisan migrate` to start run migrations.
 4. Use the command `docker-compose exec app php artisan db:seed` to populate the base.
-5. Access http://localhost
+5. Use the command `docker-compose exec app php artisan schedule:work` to turn on the messaging service.
+6. Access http://localhost
 
 # Useful commands
 ## Project commands
@@ -56,6 +56,8 @@ docker-compose exec app php artisan migrate
 ```shell
 docker-compose exec app php artisan db:seed
 ```
+
+## Schedules Commands
 ### Up Schedule Commands
 ```shell
 docker-compose exec app php artisan schedule:work
