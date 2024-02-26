@@ -26,9 +26,9 @@ git clone https://github.com/elisvasconcelos/pp.git
 ```
 1. Use the command `./vendor/bin/sail up` to start the application.
 2. Use the command `docker-compose exec app composer install` to install dependencies.
-2. Use the command `docker-compose exec app php artisan migrate` to start run migrations.
-3. Use the command `docker-compose exec app php artisan db:seed` to populate the base.
-4. Access http://localhost
+3. Use the command `docker-compose exec app php artisan migrate` to start run migrations.
+4. Use the command `docker-compose exec app php artisan db:seed` to populate the base.
+5. Access http://localhost
 
 # Useful commands
 ## Project commands
