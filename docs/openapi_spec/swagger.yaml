@@ -1,0 +1,100 @@
+openapi: 3.0.0
+
+info:
+  title: Desafio Back-end
+  description: Serviço para realizar transferências entre usuários
+  version: 0.0.1
+
+paths:
+  /api/pp/order/:
+    post:
+      summary: Cria uma nova transferência
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: number
+                  description: Valor a ser transferido
+                  example: "150.35"
+                payer:
+                  type: integer
+                  description: ID do usuário pagador.
+                  example: 1
+                payee:
+                  type: integer
+                  description: ID do usuário beneficiário.
+                  example: 2
+              required:
+                - value
+                - payer
+                - payee
+      description: Cria uma nova transferência entre usuários
+      responses:
+        201:
+          description: Transferência realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensagem de sucesso.
+                  id:
+                    type: integer
+                    description: O ID da transferência criada.
+        401:
+          description: Transferência não autorizada.
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        '500':
+          description: Erro ao realizar transferência.
+components:
+  responses:
+    UnauthorizedError:
+      description: Erro de autorização.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: object
+                description: Objeto contendo a mensagem de erro.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            example:
+              errors:
+                - "Transferência não autorizada."
+    UnprocessableEntityError:
+      description: Erro de validação na requisição.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: object
+                description: Objeto contendo as mensagens de erro de cada campo que falhou na validação.
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            example:
+              errors:
+                value:
+                  - "The value field is required."
+                  - "The value field must have 0-2 decimal places."
+                  - "The value field must be greater than 0."
+                payer:
+                  - "The payer field is required."
+                payee:
+                  - "The payee field is required."
+security:
+  - bearerAuth: [ ]
