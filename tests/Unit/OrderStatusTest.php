@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use App\Exceptions\ApplicationException;
-use App\Services\MessageStatusService;
 use App\Services\OrderStatusService;
 use Database\Seeders\DatabaseSeeder;
 use Tests\TestCase;

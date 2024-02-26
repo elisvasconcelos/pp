@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ApplicationException;
-use App\Helpers\MessageHelper;
 use App\Services\OrderService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -49,6 +48,7 @@ class OrderController extends Controller
             return response()->json($response, 201);
         } catch (ApplicationException $e) {
             report($e);
+
             return response()->json(['message' => $e->getMessage()], $e->getCode());
         }
     }

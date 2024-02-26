@@ -45,6 +45,4 @@ class MessageStatusTest extends TestCase
         $this->expectException(ApplicationException::class);
         $this->service->getStatusIdByName('unknowing');
     }
-
-
 }
